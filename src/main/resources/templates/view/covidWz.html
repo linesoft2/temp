@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="js/echarts.js"></script>
+    <script src="js/china.js"></script>
+    <script src="js/jquery.js"></script>
+    <link href="css/bootstrap.css" rel="stylesheet"/>
+    <style>
+        * {
+            margin: 0;
+            padding: 0
+        }
+
+        html, body {
+            width: 100%;
+            height: 100%;
+        }
+
+        #main {
+            width: 600px;
+            height: 450px;
+            margin: 150px auto;
+            border: 1px solid #ddd;
+        }
+
+        /*默认长宽比0.75*/
+        .center {
+            margin: auto;
+            width: 70%;
+        }
+    </style>
+</head>
+<body>
+<div style="margin:50px;">
+    <h2 align="center">救援物资使用情况统计</h2>
+</div>
+<div id="covid19_wz" style="width: 1000px;height:400px;" class="center"></div>
+<script type="text/javascript">
+    /*--------------------救援物资-----------------------------*/
+    // 基于准备好的dom，初始化echarts实例
+    var myChart = echarts.init(document.getElementById('covid19_wz'));
+    myChart.setOption({
+        title: {
+            text: '救援物资'
+        },
+        legend: {},
+        tooltip: {},
+        dataset: {
+            // 这里指定了维度名的顺序，从而可以利用默认的维度到坐标轴的映射。
+            dimensions: ['name', '采购', '下拨', '捐赠', '消耗', '需求', '库存'],
+            source: []
+        },
+        xAxis: {
+            type: 'category',
+            data: []
+        },
+        yAxis: {},
+        series: [
+            {type: 'bar'},
+            {type: 'bar'},
+            {type: 'bar'},
+            {type: 'bar'},
+            {type: 'bar'},
+            {type: 'bar'}
+        ]
+    });
+
+    var xdata = [];//x轴
+    setInterval(function () {
+        $.getJSON("covid/getCovidWz", function (data) {
+            var arr = data.data
+            xdata = []
+            for (var i = 0; i < arr.length; i++) {
+                xdata.push(arr[i].name)
+            }
+            myChart.setOption({
+                dataset: {
+                    source: data.data
+                },
+                xAxis: {
+                    data: xdata
+                }
+            })
+        })
+    }, 2000)
+</script>
+</body>
+</html>

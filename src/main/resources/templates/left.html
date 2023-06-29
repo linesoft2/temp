@@ -1,0 +1,165 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>新冠疫情防控指挥控制中心</title>
+<link href="css/style.css" rel="stylesheet" type="text/css" />
+<script language="JavaScript" src="js/jquery.js"></script>
+
+<script type="text/javascript">
+$(function(){
+	//导航切换
+	$(".menuson .header").click(function(){
+		var $parent = $(this).parent();
+		$(".menuson>li.active").not($parent).removeClass("active open").find('.sub-menus').hide();
+
+		$parent.addClass("active");
+		if(!!$(this).next('.sub-menus').size()){
+			if($parent.hasClass("open")){
+				$parent.removeClass("open").find('.sub-menus').hide();
+			}else{
+				$parent.addClass("open").find('.sub-menus').show();
+			}
+
+
+		}
+	});
+
+	// 三级菜单点击
+	$('.sub-menus li').click(function(e) {
+        $(".sub-menus li.active").removeClass("active")
+		$(this).addClass("active");
+    });
+
+	$('.title').click(function(){
+		var $ul = $(this).next('ul');
+		$('dd').find('.menuson').slideUp();
+		if($ul.is(':visible')){
+			$(this).next('.menuson').slideUp();
+		}else{
+			$(this).next('.menuson').slideDown();
+		}
+	});
+})
+</script>
+
+
+</head>
+
+<body style="background:#f0f9fd;">
+	<div class="lefttop"><span></span>新冠疫情</div>
+
+    <dl class="leftmenu">
+        <dd sec:authorize="hasAuthority('system')">
+        <div class="title">
+        <span><img src="images/leftico01.png" /></span>系统管理
+        </div>
+            <ul class="menuson">
+
+                <li sec:authorize="hasAuthority('system:user')">
+                    <div class="header">
+                    <cite></cite>
+                    <a href="userList" target="rightFrame">用户权限管理</a>
+                    <i></i>
+                    </div>
+                </li>
+                <li sec:authorize="hasAuthority('system:role')">
+                    <div class="header">
+                    <cite></cite>
+                    <a href="roleList" target="rightFrame">角色管理</a>
+                    <i></i>
+                    </div>
+                </li>
+
+            </ul>
+        </dd>
+
+        <dd sec:authorize="hasAuthority('view')">
+        <div class="title">
+        <span><img src="images/leftico01.png" /></span>数据可视化
+        </div>
+            <ul class="menuson">
+                <li sec:authorize="hasAuthority('view:nationaldata')">
+                    <div class="header">
+                    <cite></cite>
+                    <a href="nationalData.html" target="rightFrame">实时疫情数据</a>
+                    <i></i>
+                    </div>
+                </li>
+                <li sec:authorize="hasAuthority('view:nationalmapdata')">
+                    <div class="header">
+                        <cite></cite>
+                        <a href="nationalMapData.html" target="rightFrame">全国各省份确诊数据</a>
+                        <i></i>
+                    </div>
+                </li>
+                <li sec:authorize="hasAuthority('view:covidtimedata')">
+                    <div class="header">
+                        <cite></cite>
+                        <a href="covidTimeData.html" target="rightFrame">时间疫情趋势统计</a>
+                        <i></i>
+                    </div>
+                </li>
+
+                <li sec:authorize="hasAuthority('view:covidimportdata')">
+                    <div class="header">
+                        <cite></cite>
+                        <a href="covidImportData.html" target="rightFrame">境外输入确诊数据统计</a>
+                        <i></i>
+                    </div>
+                </li>
+
+                <li sec:authorize="hasAuthority('view:covidwz')">
+                    <div class="header">
+                        <cite></cite>
+                        <a href="covidWz.html" target="rightFrame">救援物资使用情况统计</a>
+                        <i></i>
+                    </div>
+                </li>
+            </ul>
+        </dd>
+
+        <dd sec:authorize="hasAuthority('data')">
+            <div class="title">
+                <span><img src="images/leftico01.png" /></span>数据维护
+            </div>
+            <ul class="menuson">
+                <li sec:authorize="hasAuthority('data:provinces')">
+                    <div class="header">
+                        <cite></cite>
+                        <a href="provinceList" target="rightFrame">全国省份确诊数据</a>
+                        <i></i>
+                    </div>
+                </li>
+
+                <li sec:authorize="hasAuthority('data:time')">
+                    <div class="header">
+                        <cite></cite>
+                        <a href="internaldayList" target="rightFrame">时间疫情数据维护</a>
+                        <i></i>
+                    </div>
+                </li>
+
+                <li sec:authorize="hasAuthority('data:overseasinput')">
+                    <div class="header">
+                        <cite></cite>
+                        <a href="overseasinputList" target="rightFrame">境外输入确诊数据</a>
+                        <i></i>
+                    </div>
+                </li>
+
+                <li sec:authorize="hasAuthority('data:wz')">
+                    <div class="header">
+                        <cite></cite>
+                        <a href="wzList" target="rightFrame">物资消耗</a>
+                        <i></i>
+                    </div>
+                </li>
+            </ul>
+        </dd>
+    </dl>
+
+</body>
+</html>

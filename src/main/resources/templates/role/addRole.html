@@ -1,0 +1,132 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta name="_csrf" th:content="${_csrf.token}">
+  <meta name="_csrf_header" th:content="${_csrf.headerName}">
+  <script type="text/javascript" src="js/jquery.js"></script>
+  <link rel="stylesheet" href="js/script/zTree_v3/css/demo.css" type="text/css">
+  <link rel="stylesheet" href="js/script/zTree_v3/css/zTreeStyle/zTreeStyle.css" type="text/css">
+  <script type="text/javascript" src="js/script/zTree_v3/js/jquery.ztree.core-3.5.js"></script>
+  <script type="text/javascript" src="js/script/zTree_v3/js/jquery.ztree.excheck-3.5.js"></script>
+  <script type="text/javascript" src="js/script/common.js"></script>
+  <style type="text/css">
+    body {
+      font-size: 12px;
+    }
+    tbody tr td{ border-left:0px dotted #c7c7c7; line-height:30px;}
+    .place{height:40px; background:url(../images/righttop.gif) repeat-x;}
+    .place span{line-height:40px; font-weight:bold;float:left; margin-left:12px;}
+    .placeul li{float:left; line-height:40px; padding-left:7px; padding-right:12px; background:url(../images/rlist.gif) no-repeat right;}
+    .placeul li:last-child{background:none;}
+    .placeul li a{text-decoration:none;color:#000;}
+    .placeul li a:hover {
+      background-color: #EDF6FA;
+      color: #000;
+    }
+    select,input,textarea{
+      width: 235px;
+      height: 25px;
+      border: 1px solid #ccc;
+      border-radius:3px;
+    }
+    label{color:red;}
+    .placeul li{
+      list-style: none;
+    }
+  </style>
+  <script type="text/javascript">
+    var setting = {
+      check: {
+        enable: true
+      },
+      data: {
+        simpleData: {
+          enable: true
+        }
+      }
+    };
+    myInitTree("treeDemo", "treeList");
+  </script>
+
+  <script type="text/javascript">
+    function goBack(){
+      history.go(-1);
+    }
+    function saveRole(){
+      var treeObj = $.fn.zTree.getZTreeObj("treeDemo");
+      var nodes = treeObj.getCheckedNodes(true);
+      var menuIds = "";
+      $.each(nodes,function(i,n){
+        menuIds += n.id+",";
+      });
+      menuIds = menuIds.substring(0, menuIds.length -1);
+      $("#menuIds").val(menuIds);
+      $("#addForm").submit();
+    }
+  </script>
+
+</head>
+<body style="overflow-x:hidden;">
+<div class="place">
+  <span>位置:</span>
+  <ul class="placeul">
+    <li><a href="roleList">角色管理</a></li>
+    <li><a href="#">添加角色</a></li>
+  </ul>
+</div>
+
+<form action="saveRole" method="post" id="addForm">
+  <input type="hidden" th:value="${_csrf.token}" name="_csrf" th:if="${_csrf}"/>
+  <input type="hidden" name="menuIds"  id="menuIds" />
+  <table style="margin:20px;" width="100%" border="0" cellspacing="0" cellpadding="0">
+    <tr>
+      <td height="445" align="left" valign="top" class="add_main">
+        <table width="100%" border="0" cellspacing="0" cellpadding="0">
+          <tr>
+            <td width="66" height="30">角色名称:</td>
+            <td width="478" class="inputText">
+              <input type="text" id="rname" name="rname" />
+            </td>
+            <td width="170">
+            </td>
+          </tr>
+
+          <tr>
+            <td width="66"><span style="position: relative;top: -5px;">角色描述:</span></td>
+            <td width="478" class="inputText">
+              <textarea rows="3" cols="24" name="rdesc"></textarea>
+            </td>
+            <td width="170">
+            </td>
+          </tr>
+
+          <tr>
+            <td width="66">角色权限:</td>
+            <td width="478" class="inputText">
+              <ul id="treeDemo" class="ztree" style="height: 320px;"></ul>
+            </td>
+            <td width="170">
+            </td>
+          </tr>
+          <tr>
+            <td height="50">&nbsp;</td>
+            <td valign="bottom">
+              <img style="margin-top: 20px;" src="images/cancel_btn.png" width="84" height="28"  onclick="goBack()"/>
+              <img src="images/save_btn.png" width="84" height="28" onclick="saveRole()" /></td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+          </tr>
+        </table></td>
+    </tr>
+  </table>
+</form>
+
+
+
+</body>
+</html>

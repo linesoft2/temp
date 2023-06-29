@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <link href="css/new_style.css" rel="stylesheet" type="text/css" />
+  <style type="text/css">
+    table{border:0px;}
+    tbody tr td{ border-left:0px dotted #c7c7c7; line-height:30px;}
+    select,input,textarea{
+      width: 180px;
+      height: 30px;
+      border: 1px solid #ccc;
+    }
+  </style>
+  <script type="text/javascript" src="js/jquery.js"></script>
+  <script type="text/javascript">
+    function goBack(){
+      history.go(-1);
+    }
+  </script>
+
+</head>
+<body style="overflow-x:hidden;">
+<div class="place">
+  <span>位置：</span>
+  <ul class="placeul">
+    <li><a href="internaldayList">时间疫情数据维护</a></li>
+    <li><a href="#">时间疫情数据详情</a></li>
+  </ul>
+</div>
+  <table style="margin:20px;" width="100%" border="0" cellspacing="0" cellpadding="0">
+    <tr>
+      <td height="245" align="left" valign="top" class="add_main">
+        <table width="100%" border="0" cellspacing="0" cellpadding="0">
+          <tr>
+            <td width="66" height="30">日期:</td>
+            <td width="130" class="inputText" th:text="${internalday.dateId}">
+            </td>
+            <td width="170">
+            </td>
+          </tr>
+
+
+          <tr>
+            <td width="66" height="30">新增确诊:</td>
+            <td width="178" class="inputText" th:text="${internalday.confirmedIncr}">
+            </td>
+            <td width="170">
+            </td>
+          </tr>
+
+          <tr>
+            <td width="66" height="30">确诊数量:</td>
+            <td width="178" class="inputText" th:text="${internalday.confirmedCount}">
+            </td>
+            <td width="170">
+            </td>
+          </tr>
+
+
+          <tr>
+            <td width="66" height="30">疑似确诊:</td>
+            <td width="178" class="inputText" th:text="${internalday.suspectedCount}">
+            </td>
+            <td width="170">
+            </td>
+          </tr>
+
+          <tr>
+            <td width="66" height="30">治愈数量:</td>
+            <td width="178" class="inputText" th:text="${internalday.curedCount}">
+            </td>
+            <td width="170">
+            </td>
+          </tr>
+
+          <tr>
+            <td width="66" height="30">死亡数量:</td>
+            <td width="178" class="inputText" th:text="${internalday.deadCount}">
+            </td>
+            <td width="170">
+            </td>
+          </tr>
+
+
+
+          <tr>
+            <td height="50">&nbsp;</td>
+            <td valign="bottom">
+              <img src="images/cancel_btn.png" width="84" height="28"  onclick="goBack()"/>
+            </td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+          </tr>
+        </table></td>
+    </tr>
+  </table>
+</body>
+</html>

@@ -1,0 +1,67 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>新冠疫情防控指挥控制中心</title>
+<link href="css/style.css" rel="stylesheet" type="text/css" />
+<script language="JavaScript" src="js/jquery.js"></script>
+<script type="text/javascript">
+$(function(){
+	//顶部导航切换
+	/*$(".nav li a").click(function(){
+		$(".nav li a.selected").removeClass("selected")
+		$(this).addClass("selected");
+	})*/
+})
+</script>
+
+<style type="text/css">
+    .toplogo{
+        font-size: 28px;
+        line-height: 80px;
+        margin-left: 20px;
+        font-family: 楷体;
+        font-weight: bold;
+        color: red;
+    }
+    .toplogo a:hover{
+        color: red;
+    }
+</style>
+    <script type="text/javascript">
+        function logout(){
+            $("#logoutForm").submit();
+        }
+    </script>
+</head>
+
+<body style="background:url(images/topbg.gif) repeat-x;">
+
+    <div class="topleft">
+    <a href="#" target="_parent" class="toplogo">
+        新冠疫情防控指挥控制中心
+    </a>
+    </div>
+    <div class="topright">
+    <ul>
+    <li><a href="faceReg.html" target="_parent">人脸注册</a></li>
+    <li>
+        <form action="logout" method="post" target="_parent" id="logoutForm">
+            <input type="hidden" th:value="${_csrf.token}" name="_csrf" th:if="${_csrf}"/>
+            <a style="cursor: pointer;" onclick="logout();">退出</a>
+        </form>
+    </li>
+    </ul>
+
+    <div class="user">
+        <span sec:authentication="principal.username"></span>
+    <!--<i>消息</i>
+    <b>5</b>-->
+    </div>
+
+    </div>
+
+</body>
+</html>

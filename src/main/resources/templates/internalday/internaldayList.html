@@ -1,0 +1,132 @@
+
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="css/base.css" />
+    <link rel="stylesheet" href="css/info-mgt.css" />
+    <link rel="stylesheet" href="css/WdatePicker.css" />
+    <script type="text/javascript" src="js/jquery.js"></script>
+    <script type="text/javascript" src="js/chinasofti.js"></script>
+    <script type="text/javascript">
+        function gotoPage(currentPage){
+            $("#currentPage").val(currentPage);
+            $("#searchForm").submit();
+        }
+        function deleteInternaldays(){
+            var dateIdcheckeds = $("input:checkbox[name='dateId']:checked");
+            var dateIds = "";
+            if(dateIdcheckeds.length>0){
+                for(var i=0;i<dateIdcheckeds.length;i++){
+                    dateIds += dateIdcheckeds[i].value+",";
+                }
+                window.location.href = "deleteInternaldays?dateIds="+dateIds;
+            }else{
+                alert("请至少选择一个要删除的数据");
+            }
+        }
+    </script>
+</head>
+
+<body>
+<div class="title">
+    <h2>时间疫情数据维护</h2></div>
+<form id="searchForm" action="internaldayList" method="post">
+    <input type="hidden" th:value="${_csrf.token}" name="_csrf" th:if="${_csrf}"/>
+    <input type="hidden" th:value="1" name="currentPage" id="currentPage" />
+    <div class="query" style="width: 580px;border: none;" sec:authorize="hasAuthority('data:time:select')" >
+        <div class="query-conditions ue-clear">
+            <div class="conditions staff ue-clear" style="width: 580px;">
+                <label style="width:70px;">起始日期：</label>
+                <input type="text" th:value="${searchInternalday.startDate}" name="startDate" placeholder="请输入要查询的日期" />
+
+                <label style="width: 70px;">结束日期：</label>
+                <input type="text" th:value="${searchInternalday.endDate}" name="endDate" placeholder="请输入要查询的日期" />
+
+                <a href="javascript:;" onclick="gotoPage(1);" style="margin-left: 10px;" class="confirm">查询</a>
+            </div>
+        </div>
+    </div>
+</form>
+<!-- 按钮 -->
+<div style="position:absolute;right:0;margin:-45px 5px 0 0">
+    <a sec:authorize="hasAuthority('data:time:insert')" href="addInternalday.html" id="add" class="add">
+        <img src="images/add_btn.png" name="Image1"  border="0" id="Image1" onmouseover="MM_swapImage('Image1','','images/add_btn_1.jpg',1)" onmouseout="MM_swapImgRestore()" />
+    </a>
+
+    <a sec:authorize="hasAuthority('data:time:deletes')"  href="#" onclick="deleteInternaldays();" id="delete" class="delete" >
+      <img src="images/delete_btn.png"  border="0" id="Image4" onmouseover="MM_swapImage('Image4','','images/delete_btn_1.jpg',1)" onmouseout="MM_swapImgRestore()" />
+    </a>
+
+
+</div>
+<div class="table-box">
+    <table>
+        <thead>
+        <tr>
+            <th class="num"><input style="height: auto;" type="checkbox" id="checkAll"/></th>
+            <th class="name">日期</th>
+            <th class="process">新增确诊数量</th>
+            <th class="process">确诊数量</th>
+            <th class="process">疑似病例数量</th>
+            <th class="process">治愈数量</th>
+            <th class="process">死亡数量</th>
+            <th class="operate">操作</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="internalday:${pageInfo.list}">
+            <td class="num"><input style="height: auto;" name="dateId" type="checkbox" th:value="${internalday.dateId}"/></td>
+            <td class="name" th:text="${internalday.dateId}"></td>
+            <th class="process" th:text="${internalday.confirmedIncr}"></th>
+            <th class="process" th:text="${internalday.confirmedCount}"></th>
+            <th class="process" th:text="${internalday.suspectedCount}"></th>
+            <th class="process" th:text="${internalday.curedCount}"></th>
+            <th class="process" th:text="${internalday.deadCount}"></th>
+            <td class="operate">
+                <a sec:authorize="hasAuthority('data:time:detail')" th:href="@{/toInternaldayDetail(dateId=${internalday.dateId})}">查看详情</a>
+                &nbsp;
+                <a sec:authorize="hasAuthority('data:time:update')" th:href="@{/updateInternalday.html(dateId=${internalday.dateId})}">修改</a>
+
+                <a sec:authorize="hasAuthority('data:time:delete')" th:href="@{/deleteInternalday(dateId=${internalday.dateId})}">删除</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+<!--<div class="pagination ue-clear"></div>-->
+<div class="pagination ue-clear">
+    <div class="goto"><span class="text">转到第</span><input id="yema" type="text"><span class="page">页</span><a href="javascript:;" onclick="gotoPage(document.getElementById('yema').value);">转</a></div>
+    <div class="pagin-list">
+        <a th:if="${pageInfo.pageNum>1}" href="javascript:;" th:onclick="gotoPage([[${pageInfo.prePage}]]);" class="prev">
+            &lt;上一页
+        </a>
+        <span class="current" th:text="${pageInfo.pageNum}"></span>
+        <a th:if="${pageInfo.pageNum<pageInfo.pages}" href="javascript:;" th:onclick="gotoPage([[${pageInfo.nextPage}]]);" class="next">
+            下一页&nbsp;&gt;
+        </a>
+    </div>
+    <div class="pxofy">显示第<font th:text="${pageInfo.pageNum}"></font>页，总共<font th:text="${pageInfo.total}"></font>条</div></div>
+</body>
+<script type="text/javascript" src="js/jquery.js"></script>
+<script type="text/javascript" src="js/common.js"></script>
+<script type="text/javascript" src="js/WdatePicker.js"></script>
+<script type="text/javascript" src="js/jquery.pagination.js"></script>
+<script type="text/javascript">
+    $(".select-title").on("click",function(){
+        $(".select-list").hide();
+        $(this).siblings($(".select-list")).show();
+        return false;
+    })
+    $(".select-list").on("click","li",function(){
+        var txt = $(this).text();
+        $(this).parent($(".select-list")).siblings($(".select-title")).find("span").text(txt);
+    })
+
+    $("tbody").find("tr:odd").css("backgroundColor","#eff6fa");
+
+    showRemind('input[type=text], textarea','placeholder');
+</script>
+</html>

@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="js/echarts.js"></script>
+    <script src="js/china.js"></script>
+    <script src="js/jquery.js"></script>
+    <link href="css/bootstrap.css" rel="stylesheet"/>
+    <style>
+        * {
+            margin: 0;
+            padding: 0
+        }
+
+        html, body {
+            width: 100%;
+            height: 100%;
+        }
+
+        #main {
+            width: 600px;
+            height: 450px;
+            margin: 150px auto;
+            border: 1px solid #ddd;
+        }
+
+        /*默认长宽比0.75*/
+        .center {
+            margin: auto;
+            width: 70%;
+        }
+    </style>
+</head>
+<body>
+    <div style="margin:50px;">
+        <h2 align="center">实时疫情大数据平台</h2>
+    </div>
+    <div id="covid_all" class="center">
+        <table class="table table-bordered" bgcolor="#b0e0e6">
+            <thead>
+            <tr>
+                <th>
+                    时间
+                </th>
+                <th>
+                    现存确诊
+                </th>
+                <th>
+                    累计确诊
+                </th>
+                <th>
+                    现存疑似
+                </th>
+                <th>
+                    累计治愈
+                </th>
+                <th>
+                    累计死亡
+                </th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td id="datetime">1</td>
+                <td id="currentConfirmedCount">1</td>
+                <td id="confirmedCount">1</td>
+                <td id="suspectedCount">1</td>
+                <td id="curedCount">1</td>
+                <td id="deadCount">1</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+</body>
+    <script type="text/javascript">
+
+    /*--------------------全国统计数据-----------------------------*/
+    $.getJSON("covid/getNationalData", function (data) {
+        var map = data.data
+        $("#datetime").html(map.datetime)
+        $("#currentConfirmedCount").html(map.currentConfirmedCount)
+        $("#confirmedCount").html(map.confirmedCount)
+        $("#suspectedCount").html(map.suspectedCount)
+        $("#curedCount").html(map.curedCount)
+        $("#deadCount").html(map.deadCount)
+    })
+
+    </script>
+</html>

@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <link href="css/new_style.css" rel="stylesheet" type="text/css" />
+    <style type="text/css">
+        table{border:0px;}
+        tbody tr td{ border-left:0px dotted #c7c7c7; line-height:30px;}
+        select,input,textarea{
+            width: 180px;
+            height: 30px;
+            border: 1px solid #ccc;
+        }
+    </style>
+    <script type="text/javascript" src="js/jquery.js"></script>
+    <script type="text/javascript">
+        function goBack(){
+            history.go(-1);
+        }
+        function saveWz(){
+            $("#addForm").submit();
+        }
+    </script>
+
+</head>
+<body style="overflow-x:hidden;">
+<div class="place">
+    <span>位置：</span>
+    <ul class="placeul">
+        <li><a href="wzList">物资消耗管理</a></li>
+        <li><a href="#">添加物资</a></li>
+    </ul>
+</div>
+<form action="saveWz" method="post" class="form" id="addForm">
+    <input type="hidden" th:value="${_csrf.token}" name="_csrf" th:if="${_csrf}"/>
+    <table style="margin:20px;" width="100%" border="0" cellspacing="0" cellpadding="0">
+        <tr>
+            <td height="245" align="left" valign="top" class="add_main">
+                <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                    <tr>
+                        <td width="66" height="30">物资名称:</td>
+                        <td width="130" class="inputText">
+                            <input type="text" id="loginName" th:name="name"/>
+                            <div th:text="${msg}" id="messageError" style="color: red;position: absolute;margin: -29px 0 0 190px;">
+
+                            </div>
+                        </td>
+                        <td width="170">
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td width="66" height="30">采购数量:</td>
+                        <td width="178" class="inputText"><input type="text" th:name="cg"/></td>
+                        <td width="170">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td width="66" height="30">下拨数量:</td>
+                        <td width="178" class="inputText"><input type="text" th:name="xb"/></td>
+                        <td width="170">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td width="66" height="30">捐赠数量:</td>
+                        <td width="178" class="inputText"><input type="text" th:name="jz"/></td>
+                        <td width="170">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td width="66" height="30">消耗数量:</td>
+                        <td width="178" class="inputText"><input type="text" th:name="xh"/></td>
+                        <td width="170">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td width="66" height="30">需求数量:</td>
+                        <td width="178" class="inputText"><input type="text" th:name="xq"/></td>
+                        <td width="170">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td width="66" height="30">库存数量:</td>
+                        <td width="178" class="inputText"><input type="text" th:name="kc"/></td>
+                        <td width="170">
+                        </td>
+                    </tr>
+
+
+                    <tr>
+                        <td height="50">&nbsp;</td>
+                        <td valign="bottom">
+                            <img src="images/cancel_btn.png" width="84" height="28"  onclick="goBack()"/>
+                            <img src="images/save_btn.png" width="84" height="28" onclick="saveWz();"/>
+                        </td>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                    </tr>
+                </table></td>
+        </tr>
+    </table>
+</form>
+</body>
+</html>

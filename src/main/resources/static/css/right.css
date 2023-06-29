@@ -1,0 +1,268 @@
+
+/*===��������===*/
+
+body{
+  margin:0;
+  padding:0;
+  font-size:12px;
+  font-family:Arial,"����";
+  background:#F4F7FC;
+  width: 1130px;
+  }
+
+div,ul,li,p,form,h1,h2,h3,h4,h5,h6,dl,dt,dd,input{
+  margin:0;
+  padding:0;
+  }
+
+img{
+  border:0;
+  }
+
+a{
+  text-decoration:none;
+  }
+
+ul li{
+  list-style:none;
+  }
+
+.flo{
+  float:left;
+  }
+
+#list_title{
+  height:29px;
+  background:url(../img/list_one.jpg) repeat-x;
+  font-size:14px;
+  color:#497bbb;
+  line-height:29px;
+  padding-left:15px;
+  }
+
+#lista_form{
+   height:194px;
+   background:url(../img/icon7.jpg) center bottom no-repeat;
+   }
+
+#lista_form_top{
+   height:72px;
+   line-height:72px;
+   text-align:center;
+   color:#022E87;
+   font-size:14px;
+   font-weight:bold;
+   }
+
+#lista_form_bot{
+   height:120px;
+   font-size:14px;
+   color:#022E87;
+   }
+
+#lista_form_bota{
+   width:570px;
+   height:30px;
+   font-size:14px;
+   color:#022E87;
+   margin:0 auto;
+   overflow:hidden;
+   }
+  
+  
+.lista_form_bota{
+	  width:570px;
+	  height:30px;
+	  font-size:14px;
+	  color:#022E87;
+	  margin:0 auto;
+	  overflow:hidden;
+ }
+ 
+ .lista_form_bota .list_btn{
+ 	  padding-left:4px;
+ 	  padding-right:4px;
+	  height:21px;
+	  background:url(../img/lista_subg.jpg) repeat-x;
+	  border:0;
+	  color: #fff;
+ }
+ 
+.form div {
+   width:250px;
+   font-size:14px;
+   color:#022E87;
+   margin:0 auto;
+   padding-top:10px;
+   text-align:center;
+}
+
+.form div label{
+	  width:70px;
+	  line-height:30px;
+	  text-align:right;
+}
+
+.form div  input,select{
+	  width:180px;
+	  height:30px;
+}
+
+.form div  textarea{
+	  width:180px;
+	  height:50px;
+}
+
+
+ .form div  input.btn{
+	 width:40px;
+}
+
+.form table{
+	font-size:14px;
+    margin:10 auto;
+    text-align:center;
+}
+
+.form table tbody tr td label{
+	 color:#022E87;
+	 line-height:30px;
+	 text-align:right;
+}
+	
+.lista_left{
+  width:70px;
+  height:30px;
+  float:left;
+  line-height:30px;
+  text-align:right;
+  }
+
+.lista_right{
+  width:180px;
+  height:30px;
+  float:left;
+  }
+  
+  
+.lista_txt{
+  width:180px;
+  height:20px;
+  border:1px solid #3765A1;
+  }
+
+.mg{
+  margin-left:62px;
+  }
+
+#lista_data{
+	margin-top: 20px;
+}
+	
+.form_1 {
+  margin-top:15px;
+  border: 1px solid #C6C9CE;
+  width:100%;
+}
+
+.form_1 td, .form_1 th {
+    border: 1px solid #C6C9CE;
+	height:22px;
+	line-height:22px;
+	text-align: center;
+	font-size: 12px;
+}
+
+.form_1 thead tr th {
+    background-color:#E4E7EC;
+}
+
+
+#lista_footer{
+  height:45px;
+  line-height:45px;
+  }
+
+#lista_footer a{
+  color:#000;
+  }
+
+.lista_sub{
+  width:41px;
+  height:21px;
+  background:url(../img/lista_subg.jpg) no-repeat;
+  border:0;
+  color: #fff;
+  }
+  
+#list_title_a{
+   width:270px;
+   height:40px;
+   font-size:14px;
+   color:#022E87;
+   margin:0 auto;
+   }
+
+.lista_left_a{
+  width:70px;
+  height:30px;
+  float:left;
+  line-height:30px;
+  text-align:right;
+  }
+
+.lista_right_a{
+  width:200px;
+  height:30px;
+  float:left;
+  padding-left: 10px;
+  }
+
+.lista_txta{
+  width:180px;
+  height:25px;
+  border:1px solid #3765A1;
+  }
+
+#list_title_a_a{
+   width:270px;
+   height:30px;
+   color:#022E87;
+   margin:0 auto;
+   padding-top:30px;
+   text-align:center;
+   }
+
+.mainRight{
+	width: 1130px;
+	
+}
+   
+  /*
+  .formtable{
+   font-size:14px;
+   color:#022E87;
+   margin:10 auto;
+   text-align:center;
+}
+
+
+
+.formtable tr td lable{
+     line-height:30px;
+     float: right;
+}
+
+.formtable tr td input,select,textarea{
+     line-height:30px;
+     float: left;
+}
+  
+  */
+  
+  
+
+   
+   
+   
+   
